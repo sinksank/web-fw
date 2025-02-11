@@ -5,23 +5,38 @@
       <h3>响应数据:</h3>
       <pre>{{ data }}</pre>
     </div>
+    <div>
+      <h2>仪表盘 (Dashboard)</h2>
+      <p>欢迎，{{ authStore.username }}</p>
+      <button @click="logout">退出登录</button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
 
 const data = ref(null);
 
 const fetchData = async () => {
   try {
-    const response = await axios.get('http://localhost:9090/test');
+    const response = await axios.get('http://localhost:8080/api/hello');
     console.log(response)
     data.value = response.data;
   } catch (error) {
     console.error('请求失败:', error);
   }
+};
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+const logout = () => {
+  authStore.logout();
+  router.push('/login');
 };
 </script>
 

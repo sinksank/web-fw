@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/auth';
 
 import LayoutView from '../views/LayoutView.vue'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/Login.vue'
 import SoftwareIdentityView from '../views/SoftwareIdentityView.vue'
 import SBOMManagementView from '../views/SBOMManagementView.vue'
 import VulnerabilityScanView from '../views/VulnerabilityScanView.vue'
@@ -56,14 +58,28 @@ const router = createRouter({
       ],
       meta: { title: 'Dashboard' },
     },
-  
+    { path: '/login', component: LoginView },
   ],
 })
 
-// // Navigation Guard for Setting Page Titles
-// outer.beforeEach((to, from, next) => {
-//   document.title = to.meta.title || 'Software Security Platform';
-//   next();
-// });
 
+// 模拟认证状态
+const isAuthenticated = () => {
+  return localStorage.getItem('authToken') !== null;
+};
+
+
+
+router.beforeEach((to, from, next) => {
+  const publicRoutes = ['/login']; // 不需要登录的页面
+  const authStore = useAuthStore();
+
+  // 判断是否需要验证
+  if (!publicRoutes.includes(to.path) && !authStore.isAuthenticated) {
+    alert('请先登录！');
+    next('/login');
+  } else {
+    next();
+  }
+});
 export default router
