@@ -4,11 +4,16 @@ import { useAuthStore } from '@/stores/auth';
 import LayoutView from '../views/LayoutView.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/Login.vue'
-import SoftwareIdentityView from '../views/SoftwareIdentityView.vue'
-import SBOMManagementView from '../views/SBOMManagementView.vue'
-import VulnerabilityScanView from '../views/VulnerabilityScanView.vue'
-import VulnerabilityDatabaseView from '../views/VulnerabilityDatabaseView.vue'
+import SoftwareIdentityView from '../views/manage/SoftwareIdentityView.vue'
+import SBOMManagementView from '../views/report/SBOMManagementView.vue'
+import VulnerabilityScanView from '../views/report/VulnerabilityScanView.vue'
+import ReportView from '@/views/report/ReportView.vue';
+import VulnerabilityDatabaseView from '../views/database/VulnerabilityDatabaseView.vue'
 import SettingsView from '../views/SettingsView.vue'
+import IdentityRegistrationView from '@/views/manage/IdentityRegistrationView.vue';
+import IdentityRevocationView from '@/views/manage/IdentityRevocationView.vue';
+import IdentityKeyView from '@/views/manage/IdentityKeyView.vue';
+import IdentityDoc from '@/views/manage/IdentityDoc.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,10 +55,40 @@ const router = createRouter({
           meta: { title: 'Vulnerability Database' },
         },
         {
+          path: '/report',
+          name: 'report',
+          component: ReportView,
+          meta: { title: 'Report' },
+        },
+        {
           path: '/settings',
           name: 'settings',
           component: SettingsView,
           meta: { title: 'System Settings' },
+        }, 
+        {
+          path: '/identity-registration',
+          name: 'identity-registration',
+          component: IdentityRegistrationView,
+          meta: { title: 'IdentityRegistrationView' },
+        },
+        {
+          path: '/identity-revocation',
+          name: 'identity-revocation',
+          component: IdentityRevocationView,
+          meta: { title: 'IdentityRevocationView' },
+        },
+        {
+          path: '/identity-key-update',
+          name: 'identity-key-update',
+          component: IdentityKeyView,
+          meta: { title: 'IdentityKeyView' },
+        },
+        {
+          path: '/identity-doc-update',
+          name: 'identity-doc-update',
+          component: IdentityDoc,
+          meta: { title: 'IdentityDoc' },
         }
       ],
       meta: { title: 'Dashboard' },

@@ -14,46 +14,47 @@
       </form>
     </div>
   </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import { useAuthStore } from '@/stores/auth';
-  import { useRouter } from 'vue-router';
 
-  
-  const authStore = useAuthStore();
-  const router = useRouter();
-  
-  const username = ref('');
-  const password = ref('');
-//   import apiClient from './ApiClient';
-//   const handleLogin = async () => {
-//     if (username.value && password.value) {
-//       try {
-//         const response = await apiClient.post('/login', {
-//           username: username.value,
-//           password: password.value,
-//         });
-  
-//         if (response && response.data && response.data.token) {
-//           const token = response.data.token;
-          
-//           // 存储 token
-//           authStore.login(token, username.value);
-  
-//           alert('登录成功');
-//           router.push('/');
-//         } else {
-//           alert('登录失败，请检查用户名或密码');
-//         }
-//       } catch (error) {
-//         console.error('登录请求出错:', error);
-//         alert('登录失败，请稍后重试');
-//       }
+<script setup>
+import { ref } from 'vue';
+import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
+
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+const username = ref('');
+const password = ref('');
+// 要加的部分
+// import apiClient from '../home.ApiClient';
+// const handleLogin = async () => {
+// if (username.value && password.value) {
+//     try {
+//     const response = await apiClient.post('/login', {
+//         username: username.value,
+//         password: password.value,
+//     });
+
+//     if (response && response.data && response.data.token) {
+//         const token = response.data.token;
+        
+//         // 存储 token
+//         authStore.login(token, username.value);
+
+//         alert('登录成功');
+//         router.push('/');
 //     } else {
-//       alert('请填写用户名和密码');
+//         alert('登录失败，请检查用户名或密码');
 //     }
-//   };
+//     } catch (error) {
+//     console.error('登录请求出错:', error);
+//     alert('登录失败，请稍后重试');
+//     }
+// } else {
+//     alert('请填写用户名和密码');
+// }
+// };
 
 const handleLogin = () => {
     const token = '123'
